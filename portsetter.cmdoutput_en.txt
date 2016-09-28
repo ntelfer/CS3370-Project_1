@@ -1,0 +1,7 @@
+Error: To many arguments.
+Error: Port number is invalid.
+Error: Port number is outside acceptable range.
+Error: Flag not recognized.
+Error: Port number is missing.
+Error: Invalid Environment Variable.
+Listening on port 

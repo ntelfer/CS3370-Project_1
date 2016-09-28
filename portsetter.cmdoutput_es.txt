@@ -1,0 +1,7 @@
+Error: Para muchos argumentos.
+Error: Número de puerto no es válido.
+Error: Número de puerto está fuera del rango aceptable.
+Error: la bandera no reconocida.
+Error: Número de puerto no se encuentra.
+Error: Variable no válida para el Medio Ambiente.
+Escucha en el puerto 

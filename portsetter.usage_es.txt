@@ -1,0 +1,10 @@
+Descripción
+    Establece el puerto de red para escuchar en.
+    -p, --port [Número de puerto]   especifique qué puerto para escuchar en.
+    -h, --help, -?                  imprimir el uso de programas.
+    -v, version                     imprimir la versión programas.
+    -!, --about                     imprimir información sobre el autor.
+    -e [Env_Var]                    -p con o --port , agarra el puerto de variable de entorno especificada .
+Estado de salida
+    0   si está bien,
+    1   si los argumentos no válidos dan

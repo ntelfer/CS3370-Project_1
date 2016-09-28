@@ -1,0 +1,11 @@
+Description
+    Sets the network port to listen on.
+    -p, --port [Port Number]    specify which port to listen on
+    -h, --help, -?              print out the programs usage
+    -v, version                 print the programs version
+    -!, --about                 print information about the author
+    -e [Env_Var]                with -p or --port, grab the port from specified environment variable.        
+    
+Exit Status
+    0   if OK,
+    1   if invalid arguments given
