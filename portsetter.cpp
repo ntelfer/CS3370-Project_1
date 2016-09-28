@@ -151,7 +151,7 @@ bool validInput(int argc, char * args[]){
 
 
 string getLang(){
-    string env_var[4] = {"LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"};
+    string env_var[4] = {"LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"}; 
     string langErrBegin = "Bad language specification in environment variable ";
     string langErrEnd = ". Using English.";
     string langString = "";
