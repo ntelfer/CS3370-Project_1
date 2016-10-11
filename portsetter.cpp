@@ -28,8 +28,8 @@ using std::ssub_match;
 #define ENV_VAR_OPT "-e"
 #define DEFAULT_ENV_VAR "PORT"
 #define VERSION "1.3"
-#define USAGE_FILE "portsetter.usage_en.txt"
-#define ABOUT_FILE "portsetter.about_en.txt"
+#define USAGE_FILE "portsetter.usage_"
+#define ABOUT_FILE "portsetter.about_"
 
 
 enum msgPos{
@@ -61,8 +61,8 @@ string readFile(const string& fileName, bool insertIntoVector = false){
     return completeOutput;
 }
 
-void displayUsage(){
-    cout << readFile(USAGE_FILE);
+void displayUsage(const string lang){
+    cout << readFile(USAGE_FILE+lang+".txt");
 }
 
 bool validNum(const string& portNum){
@@ -175,6 +175,7 @@ string getLang(){
         
         break;
     }
+   
     
     if(langString.size() < 2 || langString.substr(0,2) == "C."){
         return "en";
@@ -217,25 +218,23 @@ string getLang(){
 
 
 int main(int argc, char * args[]) {
-    //const string test = "enl.test";
-    system("env LANGUAGE=\"es\" > output.txt");
     string lang = getLang();
     readFile("portsetter.cmdoutput_" + lang + ".txt", true);
     
     if (!validInput(argc, args)) { 
-        displayUsage(); 
+        displayUsage(lang); 
         return 1; 
     }
     
     if (argc == 1) { 
-        displayUsage(); 
+        displayUsage(lang); 
         return 0;
     }
     
     string flag = args[1];
     
     if (flag == SHORT_HELP_OPT || flag == LONG_HELP_OPT || flag == QUES_HELP_OPT) { 
-        displayUsage(); 
+        displayUsage(lang); 
         return 0;
     }
     
@@ -245,7 +244,7 @@ int main(int argc, char * args[]) {
     }
     
     if(flag == SHORT_ABOUT_OPT || flag == LONG_ABOUT_OPT){
-        cout << readFile(ABOUT_FILE) << endl;
+        cout << readFile(ABOUT_FILE+lang+".txt") << endl;
         return 0;
     }
     
@@ -258,6 +257,7 @@ int main(int argc, char * args[]) {
         }
         cout << msg[LISTENING] << port << endl;
     }
+    
     
     return 0;
 }
