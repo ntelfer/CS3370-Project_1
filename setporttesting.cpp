@@ -89,6 +89,10 @@ int main(){
     tester(programName + " -p -e PORT", 0, portSetOutput + default_env_port_num, " > " + outputFile);
     tester(programName + " --port -e", 0, portSetOutput + default_env_port_num, " > " + outputFile);
     tester(programName + " --port -e PORT", 0, portSetOutput + default_env_port_num, " > " + outputFile);
+    tester(programName + " -p --environment", 0, portSetOutput + default_env_port_num, " > " + outputFile);
+    tester(programName + " -p --environment PORT", 0, portSetOutput + default_env_port_num, " > " + outputFile);
+    tester(programName + " --port --environment", 0, portSetOutput + default_env_port_num, " > " + outputFile);
+    tester(programName + " --port --environment PORT", 0, portSetOutput + default_env_port_num, " > " + outputFile);
     tester(programName + " -?", 0, helpOutput, " > " + outputFile);
     tester(programName + " -v", 0, version, " > " + outputFile);
     tester(programName + " --version", 0, version, " > " + outputFile);
@@ -117,6 +121,13 @@ int main(){
     tester(programName + " -e --port", 1, unknownFlag + helpOutput, " > " + outputFile);
     tester(programName + " -p -e 123", 1, badEnvVar + helpOutput, " > " + outputFile);
     tester(programName + " --port -e 123", 1, badEnvVar + helpOutput, " > " + outputFile);
+    tester(programName + " --environment", 1, unknownFlag + helpOutput, " > " + outputFile);
+    tester(programName + " --environment PORT", 1, unknownFlag + helpOutput, " > " + outputFile);
+    tester(programName + " --environment -p", 1, unknownFlag + helpOutput, " > " + outputFile);
+    tester(programName + " -p --environment akdflj", 1, badEnvVar + helpOutput, " > " + outputFile);
+    tester(programName + " --port --environment akdflj", 1, badEnvVar + helpOutput, " > " + outputFile);
+    tester(programName + " --environment --port", 1, unknownFlag + helpOutput, " > " + outputFile);
+    tester(programName + " -p --environment 123", 1, badEnvVar + helpOutput, " > " + outputFile);
     tester(programName + " -v -h", 1, tooManyArgs + helpOutput, " > " + outputFile);
     tester(programName + " -h -v", 1, tooManyArgs + helpOutput, " > " + outputFile);
     tester(programName + " --version -h", 1, tooManyArgs + helpOutput, " > " + outputFile);
