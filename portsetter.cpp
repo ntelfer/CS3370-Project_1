@@ -25,7 +25,8 @@ using std::ssub_match;
 #define LONG_ABOUT_OPT "--about"
 #define SHORT_VERS_OPT "-v"
 #define LONG_VERS_OPT "--version"
-#define ENV_VAR_OPT "-e"
+#define SHORT_ENV_VAR_OPT "-e"
+#define LONG_ENV_VAR_OPT "--environment"
 #define DEFAULT_ENV_VAR "PORT"
 #define VERSION "1.3"
 #define USAGE_FILE "portsetter.usage_"
@@ -87,7 +88,7 @@ bool validNum(const string& portNum){
 
 
 bool validInput(int argc, char * args[]){
-    map<string,string> flags = {{SHORT_PORT_OPT,""},{LONG_PORT_OPT,""}, {SHORT_HELP_OPT,""}, {LONG_HELP_OPT,""}, {QUES_HELP_OPT,""}, {SHORT_ABOUT_OPT,""}, {LONG_ABOUT_OPT,""}, {SHORT_VERS_OPT,""}, {LONG_VERS_OPT,""}, {ENV_VAR_OPT,""}};
+    map<string,string> flags = {{SHORT_PORT_OPT,""},{LONG_PORT_OPT,""}, {SHORT_HELP_OPT,""}, {LONG_HELP_OPT,""}, {QUES_HELP_OPT,""}, {SHORT_ABOUT_OPT,""}, {LONG_ABOUT_OPT,""}, {SHORT_VERS_OPT,""}, {LONG_VERS_OPT,""}, {SHORT_ENV_VAR_OPT,""}, {LONG_ENV_VAR_OPT,""}};
     
     if (argc <= 1) { return true; }
     
@@ -98,7 +99,7 @@ bool validInput(int argc, char * args[]){
     
     string flag = args[1];
     
-    if (flags.count(flag) == 0 || flag == ENV_VAR_OPT) {
+    if (flags.count(flag) == 0 || flag == SHORT_ENV_VAR_OPT || flag == LONG_ENV_VAR_OPT) {
         cout << msg[INVALID_FLAG] << endl;
         return false; 
     }
@@ -126,7 +127,7 @@ bool validInput(int argc, char * args[]){
     
     char * cStrPortNumber = getenv(env_var.c_str());
     
-    if (port == ENV_VAR_OPT) {
+    if (port == SHORT_ENV_VAR_OPT || port == LONG_ENV_VAR_OPT) {
         if(cStrPortNumber == nullptr){
             cout << msg[INVALID_ENV_VAR] << endl;
             return false;
@@ -252,7 +253,7 @@ int main(int argc, char * args[]) {
     if (flag == SHORT_PORT_OPT || flag == LONG_PORT_OPT) { 
         if (argc == 4) { 
             port = getenv(args[3]) ;
-        }else if (port == ENV_VAR_OPT) {
+        }else if (port == SHORT_ENV_VAR_OPT || port == LONG_ENV_VAR_OPT) {
             port = getenv(DEFAULT_ENV_VAR);
         }
         cout << msg[LISTENING] << port << endl;
